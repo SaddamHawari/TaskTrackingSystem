@@ -1,0 +1,15 @@
+﻿{
+  "applications": {
+    "TaskTrackingSystem.Web": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44310",
+      "path": "../../../src/TaskTrackingSystem.Web/TaskTrackingSystem.Web.csproj",
+      "kubernetesService": ".*-web$",
+      "healthCheckEndpoint": "/health-status",
+      "healthUiEndpoint": "/health-ui",
+      "execution": {
+        "order": 2
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.1.0",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.1.0",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.1.0",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.1.0",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.1.0",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.1.0",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.1.0",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.1.0",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "TaskTrackingSystem.Application": {
+      "path": "src/TaskTrackingSystem.Application/TaskTrackingSystem.Application.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.Application.Tests": {
+      "path": "test/TaskTrackingSystem.Application.Tests/TaskTrackingSystem.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "TaskTrackingSystem.Domain.Shared": {
+      "path": "src/TaskTrackingSystem.Domain.Shared/TaskTrackingSystem.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.Application.Contracts": {
+      "path": "src/TaskTrackingSystem.Application.Contracts/TaskTrackingSystem.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.HttpApi": {
+      "path": "src/TaskTrackingSystem.HttpApi/TaskTrackingSystem.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.HttpApi.Client": {
+      "path": "src/TaskTrackingSystem.HttpApi.Client/TaskTrackingSystem.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.Web": {
+      "path": "src/TaskTrackingSystem.Web/TaskTrackingSystem.Web.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.Web.Tests": {
+      "path": "test/TaskTrackingSystem.Web.Tests/TaskTrackingSystem.Web.Tests.abppkg",
+      "folder": "test"
+    },
+    "TaskTrackingSystem.EntityFrameworkCore.Tests": {
+      "path": "test/TaskTrackingSystem.EntityFrameworkCore.Tests/TaskTrackingSystem.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "TaskTrackingSystem.EntityFrameworkCore": {
+      "path": "src/TaskTrackingSystem.EntityFrameworkCore/TaskTrackingSystem.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.TestBase": {
+      "path": "test/TaskTrackingSystem.TestBase/TaskTrackingSystem.TestBase.abppkg",
+      "folder": "test"
+    },
+    "TaskTrackingSystem.Domain.Tests": {
+      "path": "test/TaskTrackingSystem.Domain.Tests/TaskTrackingSystem.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "TaskTrackingSystem.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/TaskTrackingSystem.HttpApi.Client.ConsoleTestApp/TaskTrackingSystem.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "TaskTrackingSystem.DbMigrator": {
+      "path": "src/TaskTrackingSystem.DbMigrator/TaskTrackingSystem.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "TaskTrackingSystem.Domain": {
+      "path": "src/TaskTrackingSystem.Domain/TaskTrackingSystem.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}
