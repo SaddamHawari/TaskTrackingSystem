@@ -87,25 +87,23 @@ public class TaskTrackingSystemDbContext :
         // Configure the TaskTrackingSystem module entities
         builder.Entity<Project>(b =>
         {
-            b.ToTable(name: TaskTrackingSystemConsts.DbTablePrefix + "Projects", TaskTrackingSystemConsts.DbSchema);
-            b.ConfigureByConvention(); // Auto-configure for the base class properties
+            b.ToTable("Projects");
             b.Property(x => x.Name).IsRequired().HasMaxLength(128);
             b.HasMany<TaskItem>().WithOne().HasForeignKey(x => x.ProjectId);
         });
 
         builder.Entity<TaskItem>(b =>
         {
-            b.ToTable(name: TaskTrackingSystemConsts.DbTablePrefix + "TaskItems", TaskTrackingSystemConsts.DbSchema);
-            b.ConfigureByConvention();
+            b.ToTable("TaskItems");
             b.Property(x => x.Title).IsRequired().HasMaxLength(128);
             b.HasMany(x => x.TimeLogs).WithOne().HasForeignKey(x => x.TaskItemId);
         });
 
         builder.Entity<TimeLog>(b =>
         {
-            b.ToTable(name: TaskTrackingSystemConsts.DbTablePrefix + "TimeLogs", TaskTrackingSystemConsts.DbSchema);
-            b.ConfigureByConvention();
+            b.ToTable("TimeLogs");
             b.Property(x => x.HoursWorked).IsRequired();
         });
+
     }
 }

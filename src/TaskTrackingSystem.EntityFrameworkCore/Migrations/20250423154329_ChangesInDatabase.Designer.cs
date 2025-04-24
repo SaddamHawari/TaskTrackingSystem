@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TaskTrackingSystem.EntityFrameworkCore;
@@ -12,9 +13,11 @@ using Volo.Abp.EntityFrameworkCore;
 namespace TaskTrackingSystem.Migrations
 {
     [DbContext(typeof(TaskTrackingSystemDbContext))]
-    partial class TaskTrackingSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250423154329_ChangesInDatabase")]
+    partial class ChangesInDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +84,7 @@ namespace TaskTrackingSystem.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Projects", (string)null);
+                    b.ToTable("AppProjects", (string)null);
                 });
 
             modelBuilder.Entity("TaskTrackingSystem.Entity.TaskItem", b =>
@@ -163,7 +166,7 @@ namespace TaskTrackingSystem.Migrations
 
                     b.HasIndex("ProjectId1");
 
-                    b.ToTable("TaskItems", (string)null);
+                    b.ToTable("AppTaskItems", (string)null);
                 });
 
             modelBuilder.Entity("TaskTrackingSystem.Entity.TimeLog", b =>
@@ -237,7 +240,7 @@ namespace TaskTrackingSystem.Migrations
 
                     b.HasIndex("TaskItemId1");
 
-                    b.ToTable("TimeLogs", (string)null);
+                    b.ToTable("AppTimeLogs", (string)null);
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLog", b =>
