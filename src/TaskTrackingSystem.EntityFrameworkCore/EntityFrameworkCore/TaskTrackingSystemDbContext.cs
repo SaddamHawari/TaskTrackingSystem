@@ -56,6 +56,7 @@ public class TaskTrackingSystemDbContext :
     public DbSet<Project> Projects { get; set; }
     public DbSet<TaskItem> TaskItems { get; set; }
     public DbSet<TimeLog> TimeLogs { get; set; }
+
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
 
@@ -85,24 +86,92 @@ public class TaskTrackingSystemDbContext :
 
         /* Configure your own tables/entities inside here */
         // Configure the TaskTrackingSystem module entities
-        builder.Entity<Project>(b =>
+        // Configure Project entity
+        builder.Entity<Project>(entity =>
         {
-            b.ToTable("Projects");
-            b.Property(x => x.Name).IsRequired().HasMaxLength(128);
-            b.HasMany<TaskItem>().WithOne().HasForeignKey(x => x.ProjectId);
+            entity.ToTable("Projects"); // Table name
+            entity.HasKey(p => p.Id); // Primary key
+
+            entity.Property(p => p.Name)
+                  .IsRequired()
+                  .HasMaxLength(128); // Name column configuration
+
+            entity.Property(p => p.Description)
+                  .HasColumnType("text"); // Description column configuration
+
+            entity.Property(p => p.CreatorId)
+                  .IsRequired(false); // CreatorId column configuration (nullable)
+
+            entity.Property(p => p.StartDate)
+                  .HasColumnType("timestamp without time zone"); // StartDate column configuration
+
+            entity.Property(p => p.EndDate)
+                  .HasColumnType("timestamp without time zone"); // EndDate column configuration
+
+            entity.Property(p => p.Status)
+                  .HasMaxLength(50); // Status column configuration
         });
 
-        builder.Entity<TaskItem>(b =>
+        // Configure TaskItem entity
+        builder.Entity<TaskItem>(entity =>
         {
-            b.ToTable("TaskItems");
-            b.Property(x => x.Title).IsRequired().HasMaxLength(128);
-            b.HasMany(x => x.TimeLogs).WithOne().HasForeignKey(x => x.TaskItemId);
+            entity.ToTable("TaskItems"); // Table name
+            entity.HasKey(t => t.Id); // Primary key
+
+            entity.Property(t => t.Title)
+                  .IsRequired()
+                  .HasMaxLength(128); // Title column configuration
+
+            entity.Property(t => t.Description)
+                  .HasMaxLength(500); // Description column configuration
+
+            entity.Property(t => t.DueDate)
+                  .HasColumnType("timestamp without time zone"); // DueDate column configuration
+
+            entity.Property(t => t.Status)
+                  .HasConversion<string>() // Store enum as string
+                  .IsRequired();
+
+            entity.Property(t => t.Priority)
+                  .HasConversion<string>() // Store enum as string
+                  .IsRequired();
+
+            entity.HasOne(t => t.Project)
+                  .WithMany()
+                  .HasForeignKey(t => t.ProjectId)
+                  .OnDelete(DeleteBehavior.Restrict); // Foreign key to Project
+
+            entity.HasOne<IdentityUser>()
+                  .WithMany()
+                  .HasForeignKey(t => t.AssignedToUserId)
+                  .OnDelete(DeleteBehavior.Restrict); // Foreign key to User
         });
 
-        builder.Entity<TimeLog>(b =>
+        // Configure TimeLog entity
+        builder.Entity<TimeLog>(entity =>
         {
-            b.ToTable("TimeLogs");
-            b.Property(x => x.HoursWorked).IsRequired();
+            entity.ToTable("TimeLogs"); // Table name
+            entity.HasKey(t => t.Id); // Primary key
+
+            entity.Property(t => t.LogDate)
+                  .HasColumnType("timestamp without time zone")
+                  .IsRequired(); // LogDate column configuration
+
+            entity.Property(t => t.HoursWorked)
+                  .IsRequired(); // HoursWorked column configuration
+
+            entity.Property(t => t.Notes)
+                  .HasMaxLength(1000); // Notes column configuration
+
+            entity.HasOne(t => t.TaskItem)
+                  .WithMany(ti => ti.TimeLogs)
+                  .HasForeignKey(t => t.TaskItemId)
+                  .OnDelete(DeleteBehavior.Restrict); // Foreign key to TaskItem
+
+            entity.HasOne<IdentityUser>()
+                  .WithMany()
+                  .HasForeignKey(t => t.UserId)
+                  .OnDelete(DeleteBehavior.Restrict); // Foreign key to User
         });
 
     }

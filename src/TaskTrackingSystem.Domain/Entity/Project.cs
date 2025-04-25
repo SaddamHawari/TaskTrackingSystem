@@ -11,6 +11,8 @@ namespace TaskTrackingSystem.Entity
 
         public Guid? CreatorId { get; set; }
 
-        public ICollection<TaskItem> Tasks { get; set; }
+        public DateTime? StartDate { get; set; } // Added StartDate property
+        public DateTime? EndDate { get; set; } // Added EndDate property
+        public string Status { get; set; } // Added Status property
     }
 }
